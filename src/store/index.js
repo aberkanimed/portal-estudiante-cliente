@@ -12,13 +12,20 @@ export default createStore({
     },
   },
   actions: {
-    register ({ commit }, credentials) {
-      return apiClient
-            .post('/api/register', credentials)
-            .then(({ data }) => {
-              commit('SET_USER_DATA', data.data)
-            })
-     }
+    register({ commit }, credentials) {
+        return apiClient
+          .post('/api/register', credentials)
+          .then(({ data }) => {
+            commit('SET_USER_DATA', data.data)
+          })
+      },
+      login({ commit }, credentials) {
+        return apiClient
+          .post('/api/login', credentials)
+          .then(({ data }) => {
+            commit('SET_USER_DATA', data.data)
+          })
+      },
   },
   modules: {
   }
