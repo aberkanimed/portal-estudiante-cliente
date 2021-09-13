@@ -37,7 +37,11 @@ export default createStore({
           })
       },
       logout ({ commit }) {
-        commit('LOGOUT')
+        return apiClient
+          .get('/api/logout')
+          .then(() => {
+            commit('LOGOUT')
+          })
       }
   },
   modules: {

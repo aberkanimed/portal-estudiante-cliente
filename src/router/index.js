@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import NotFound from '../views/NotFound.vue'
 import AdminLayout from '../layout/Admin.vue'
 import Dashboard from '../views/Dashboard.vue'
 import EstudiantesIndex from '../views/estudiantes/index.vue'
@@ -35,6 +36,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
