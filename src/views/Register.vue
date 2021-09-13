@@ -15,25 +15,25 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="m-sm-4">
-                                    <form>
+                                    <form @submit.prevent="register">
                                         <div class="mb-3">
                                             <label class="form-label">Name</label>
-                                            <input class="form-control form-control-lg" type="text" name="name"
+                                            <input class="form-control form-control-lg" type="text" v-model="form.name" name="name"
                                                 placeholder="Enter your name" />
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Email</label>
-                                            <input class="form-control form-control-lg" type="email" name="email"
+                                            <input class="form-control form-control-lg" type="email" v-model="form.email" name="email"
                                                 placeholder="Enter your email" />
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Password</label>
-                                            <input class="form-control form-control-lg" type="password" name="password"
+                                            <input class="form-control form-control-lg" type="password" v-model="form.password" name="password"
                                                 placeholder="Enter password" />
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Confirme Password</label>
-                                            <input class="form-control form-control-lg" type="confirm_password" name="confirm_password"
+                                            <input class="form-control form-control-lg" type="password" v-model="form.confirm_password" name="confirm_password"
                                                 placeholder="Confirm password" />
                                         </div>
                                         <div class="text-center mt-3">
@@ -52,8 +52,28 @@
 </template>
 
 <script>
-    export default {
+    import '../assets/js/app.js'
 
+    export default {
+        data() {
+            return {
+                form: {
+                    name: 'John Doe',
+                    email: 'john@doe.com',
+                    password: 'password',
+                    confirm_password: 'password',
+                }
+            }
+        },
+        methods: {
+            register() {
+                this.$store
+                .dispatch('register', this.form)
+                .then(() => {
+                    this.$router.push({ name: 'Estudiantes' })
+                })
+            }
+        }
     }
 </script>
 

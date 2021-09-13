@@ -1,13 +1,13 @@
 <template>
     <div class="wrapper">
         <!-- Side Nav Bar -->
-        <app-nav></app-nav>
+        <app-nav :toggleSideBar="toggleSideBar"></app-nav>
 
         <!-- Main -->
         <div class="main">
             <!-- NavBar -->
             <nav class="navbar navbar-expand navbar-light navbar-bg">
-                <a class="sidebar-toggle js-sidebar-toggle">
+                <a class="sidebar-toggle" @click="toggleSideBar = !toggleSideBar">
                     <i class="hamburger align-self-center"></i>
                 </a>
 
@@ -90,6 +90,11 @@
         name: 'Home',
         components: {
             AppNav
+        },
+        data() {
+            return {
+                toggleSideBar: false
+            }
         }
     }
 </script>
