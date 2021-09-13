@@ -57,8 +57,8 @@
         data() {
             return {
                 form: {
-                    email: '',
-                    password: ''
+                    email: 'john@doe.com',
+                    password: 'password'
                 },
                 errors: null,
             }

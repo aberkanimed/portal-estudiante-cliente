@@ -2,12 +2,14 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    user: null
+    user: null,
+    token: null
   },
   mutations: {
     SET_USER_DATA (state, data) {
       state.user = data.usuario
       localStorage.setItem('user', JSON.stringify(data.usuario))
+      localStorage.setItem('token', JSON.stringify(data.token))
       apiClient.defaults.headers.common['Authorization'] = `Bearer ${ data.token }`
     },
     LOGOUT (state) {
@@ -15,6 +17,7 @@ export default createStore({
       // localStorage.removeItem('user')
       // axios.defaults.headers.common['Authorization'] = null
       localStorage.removeItem('user')
+      localStorage.removeItem('token')
       location.reload()
     }
   },
