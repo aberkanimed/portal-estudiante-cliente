@@ -19,6 +19,11 @@
                                         <img src="../assets/img/avatars/avatar.jpg" alt="Charles Hall"
                                             class="img-fluid rounded-circle" width="132" height="132" />
                                     </div>
+                                    <div class="text-center text-danger" role="alert">
+                                        <ul>
+                                            <li v-for="(error, index) in errors" :key="index">{{ error[0] }}</li>
+                                        </ul>
+                                    </div>
                                     <form @submit.prevent="login">
                                         <div class="mb-3">
                                             <label class="form-label">Email</label>
@@ -52,9 +57,10 @@
         data() {
             return {
                 form: {
-                    email: 'john@doe.com',
-                    password: 'password'
-                }
+                    email: '',
+                    password: ''
+                },
+                errors: null,
             }
         },
         methods: {
@@ -62,6 +68,9 @@
                 this.$store.dispatch('login', this.form)
                 .then(() => {
                     this.$router.push({ name: 'Estudiantes' })
+                })
+                .catch((err) => {
+                    this.errors = err.response.data.errors;
                 })
             }
         }

@@ -15,6 +15,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="m-sm-4">
+                                    <div class="text-center text-danger" role="alert">
+                                        <ul>
+                                            <li v-for="(error, index) in errors" :key="index">{{ error[0] }}</li>
+                                        </ul>
+                                    </div>
                                     <form @submit.prevent="register">
                                         <div class="mb-3">
                                             <label class="form-label">Name</label>
@@ -62,7 +67,8 @@
                     email: 'john@doe.com',
                     password: 'password',
                     confirm_password: 'password',
-                }
+                },
+                errors: null,
             }
         },
         methods: {
@@ -71,6 +77,9 @@
                 .dispatch('register', this.form)
                 .then(() => {
                     this.$router.push({ name: 'Estudiantes' })
+                })
+                .catch((err) => {
+                    this.errors = err.response.data.errors;
                 })
             }
         }
