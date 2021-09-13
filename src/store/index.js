@@ -10,6 +10,13 @@ export default createStore({
       localStorage.setItem('user', JSON.stringify(data.usuario))
       apiClient.defaults.headers.common['Authorization'] = `Bearer ${ data.token }`
     },
+    LOGOUT (state) {
+      // state.user = null
+      // localStorage.removeItem('user')
+      // axios.defaults.headers.common['Authorization'] = null
+      localStorage.removeItem('user')
+      location.reload()
+    }
   },
   actions: {
     register({ commit }, credentials) {
@@ -26,6 +33,9 @@ export default createStore({
             commit('SET_USER_DATA', data.data)
           })
       },
+      logout ({ commit }) {
+        commit('LOGOUT')
+      }
   },
   modules: {
   }

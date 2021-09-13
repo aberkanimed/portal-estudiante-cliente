@@ -31,7 +31,7 @@
                                 <a class="dropdown-item" href="#"><i class="align-middle me-1"
                                         data-feather="settings"></i> Settings</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Log out</a>
+                                <button class="dropdown-item" @click="logout">Log out</button>
                             </div>
                         </li>
                     </ul>
@@ -94,6 +94,11 @@
         data() {
             return {
                 toggleSideBar: false
+            }
+        },
+        methods: {
+            logout() {
+                this.$store.dispatch('logout')
             }
         }
     }

@@ -10,16 +10,19 @@ const routes = [
     path: '/',
     name: 'AdminLayout',
     component: AdminLayout,
+    meta: { requiresAuth: true },
     children: [
       {
         path: '/',
         name: 'Dashboard',
-        component: Dashboard
+        component: Dashboard,
+        meta: { requiresAuth: true }
       },
       {
         path: '/estudiantes',
         name: 'Estudiantes',
-        component: EstudiantesIndex
+        component: EstudiantesIndex,
+        meta: { requiresAuth: true }
       },
     ]
   },
@@ -38,6 +41,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const loggedIn = localStorage.getItem('user')
+  if (to.matched.some(record => record.meta.requiresAuth) && !loggedIn) {
+    next('/login')
+  }
+  next()
 })
 
 export default router
