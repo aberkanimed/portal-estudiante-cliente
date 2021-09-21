@@ -11,6 +11,15 @@ export default createStore({
       localStorage.setItem('token', JSON.stringify(data.token))
       apiClient.defaults.headers.common['Authorization'] = `Bearer ${ data.token }`
     },
+    LOGOUT (state) {
+      // state.user = null
+      // localStorage.removeItem('user')
+      // localStorage.removeItem('token')
+      // apiClient.defaults.headers.common['Authorization'] = null
+      localStorage.removeItem('user')
+      localStorage.removeItem('token')
+      location.reload()
+    }
   },
   actions: {
     register({ commit }, credentials) {
@@ -27,6 +36,13 @@ export default createStore({
           commit('SET_USER_DATA', data.data)
         })
     },
+    logout ({ commit }) {
+      return apiClient
+        .get('/api/logout')
+        .then(() => {
+          commit('LOGOUT')
+        })
+    }
   },
   modules: {
   }
