@@ -4,6 +4,7 @@ import Dashboard from '../views/Dashboard.vue'
 import Estudiantes from '../views/Estudiantes.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import NotFound from '../views/NotFound.vue'
 
 const routes = [
   {
@@ -20,7 +21,7 @@ const routes = [
         path: '/estudiantes',
         name: 'Estudiantes',
         component: Estudiantes
-      },
+      }
     ]
   },
   {
@@ -32,6 +33,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
