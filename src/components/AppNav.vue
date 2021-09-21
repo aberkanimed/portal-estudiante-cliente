@@ -1,5 +1,5 @@
 <template>
-    <nav id="sidebar" class="sidebar js-sidebar">
+    <nav id="sidebar" class="sidebar" :class="{ collapsed: toggleSideBar }">
         <div class="sidebar-content js-simplebar">
             <a class="sidebar-brand" href="index.html">
                 <span class="align-middle">Portal Estudiante</span>
@@ -25,3 +25,9 @@
         </div>
     </nav>
 </template>
+
+<script>
+export default {
+    props : ['toggleSideBar']
+}
+</script>

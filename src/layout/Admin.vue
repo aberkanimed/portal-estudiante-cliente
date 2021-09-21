@@ -1,13 +1,13 @@
 <template>
     <div class="wrapper">
         <!-- Side Nav Bar -->
-        <app-nav></app-nav>
+        <app-nav :toggleSideBar="toggleSideBar"></app-nav>
 
         <!-- Main -->
         <div class="main">
             <!-- NavBar -->
             <nav class="navbar navbar-expand navbar-light navbar-bg">
-                <a class="sidebar-toggle js-sidebar-toggle">
+                <a class="sidebar-toggle" @click="toggleSideBar = !toggleSideBar">
                     <i class="hamburger align-self-center"></i>
                 </a>
 
@@ -22,7 +22,7 @@
                             <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
                                 data-bs-toggle="dropdown">
                                 <img src="../assets/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
-                                    alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
+                                    alt="Charles Hall" /> <span class="text-dark">{{ this.$store.state.user.name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" href="#"><i class="align-middle me-1"
@@ -31,7 +31,7 @@
                                 <a class="dropdown-item" href="#"><i class="align-middle me-1"
                                         data-feather="settings"></i> Settings</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Log out</a>
+                                <button class="dropdown-item" @click="logout">Log out</button>
                             </div>
                         </li>
                     </ul>
@@ -90,6 +90,16 @@
         name: 'Home',
         components: {
             AppNav
+        },
+        data() {
+            return {
+                toggleSideBar: false
+            }
+        },
+        methods: {
+            logout() {
+                this.$store.dispatch('logout')
+            }
         }
     }
 </script>
