@@ -3,7 +3,6 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     user: null,
-    token: null,
   },
   mutations: {
     SET_USER_DATA (state, data) {
@@ -17,6 +16,13 @@ export default createStore({
     register({ commit }, credentials) {
       return apiClient
         .post('/api/register', credentials)
+        .then(({ data }) => {
+          commit('SET_USER_DATA', data.data)
+        })
+    },
+    login({ commit }, credentials) {
+      return apiClient
+        .post('/api/login', credentials)
         .then(({ data }) => {
           commit('SET_USER_DATA', data.data)
         })
